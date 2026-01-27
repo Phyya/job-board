@@ -10,6 +10,7 @@ import java.util.List;
 
 
 @RestController
+@RequestMapping("/jobs")
 public class JobController {
 
     private JobService jobService;
@@ -18,11 +19,11 @@ public class JobController {
         this.jobService = jobService;
     }
 
-    @GetMapping("/jobs")
+    @GetMapping
     public ResponseEntity<List<Job>> findAll(){
         return  ResponseEntity.ok(jobService.findAll());
     }
-    @PostMapping("/jobs")
+    @PostMapping
     public ResponseEntity<String> createJob (@RequestBody Job newJob){
         jobService.createJob(newJob);
         return new ResponseEntity<>("Job added successfully", HttpStatus.OK);
@@ -42,6 +43,14 @@ if(job != null){
         boolean deleted = jobService.deleteJobById(id);
         if(deleted){
             return new ResponseEntity<>("Job deleted successfully", HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    @PutMapping("/jobs/{id}")
+    public ResponseEntity<String> updateJob(@PathVariable Long id, @RequestBody Job job){
+        boolean updated = jobService.updateJobById(id, job);
+        if(updated){
+            return new ResponseEntity<>("Job updated successfully", HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }

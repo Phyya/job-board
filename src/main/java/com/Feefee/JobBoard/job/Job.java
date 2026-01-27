@@ -1,5 +1,6 @@
 package com.Feefee.JobBoard.job;
 
+
 public class Job {
     private Long id;
     private String title;
@@ -55,4 +56,6 @@ public class Job {
     public void setLocation(String location) {
         this.location = location;
     }
+
+
 }
