@@ -1,13 +1,32 @@
 package com.Feefee.JobBoard.job;
 
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "job_table")
 public class Job {
+    @Id
     private Long id;
     private String title;
     private String description;
     private String minSalary;
     private String maxSalary;
     private String location;
+
+    public Job () {
+
+    }
+    public Job(String title, Long id, String description, String minSalary, String location, String maxSalary) {
+        this.title = title;
+        this.id = id;
+        this.description = description;
+        this.minSalary = minSalary;
+        this.location = location;
+        this.maxSalary = maxSalary;
+    }
 
     public String getTitle() {
         return title;
