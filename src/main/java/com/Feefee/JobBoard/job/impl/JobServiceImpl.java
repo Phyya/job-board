@@ -4,7 +4,6 @@ import com.Feefee.JobBoard.job.Job;
 import com.Feefee.JobBoard.job.JobRepository;
 import com.Feefee.JobBoard.job.JobService;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
