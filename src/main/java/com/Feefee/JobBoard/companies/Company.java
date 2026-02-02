@@ -1,57 +1,68 @@
 package com.Feefee.JobBoard.companies;
 
 import com.Feefee.JobBoard.job.Job;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-
+import com.Feefee.JobBoard.reviews.Review;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "company")
 public class Company {
-    @Id
-    private Long id;
-    private String companyName;
-    private String description;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @OneToMany
-    private List<Job> jobs;
+  private String companyName;
+  private String description;
 
-    public Company() {
+  @JsonIgnore
+  @OneToMany(mappedBy = "company")
+  private List<Job> jobs;
 
-    }
+  //  @JsonIgnore
+  @OneToMany(mappedBy = "company")
+  private List<Review> reviews;
 
-    public Long getId() {
-        return id;
-    }
+  public Company() {}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public List<Review> getReviews() {
+    return reviews;
+  }
 
-    public String getCompanyName() {
-        return companyName;
-    }
+  public void setReviews(List<Review> reviews) {
+    this.reviews = reviews;
+  }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public String getCompanyName() {
+    return companyName;
+  }
 
-    public List<Job> getJobs() {
-        return jobs;
-    }
+  public void setCompanyName(String companyName) {
+    this.companyName = companyName;
+  }
 
-    public void setJobs(List<Job> jobs) {
-        this.jobs = jobs;
-    }
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public List<Job> getJobs() {
+    return jobs;
+  }
+
+  public void setJobs(List<Job> jobs) {
+    this.jobs = jobs;
+  }
 }
