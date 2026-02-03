@@ -9,7 +9,7 @@ import jakarta.persistence.*;
 public class Review {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long Id;
+  private Long id;
 
   private String title;
   private String description;
@@ -27,11 +27,11 @@ public class Review {
   }
 
   public Long getId() {
-    return Id;
+    return id;
   }
 
-  public void setId(Long id) {
-    Id = id;
+  public void setId(Long newId) {
+    id = newId;
   }
 
   public String getTitle() {

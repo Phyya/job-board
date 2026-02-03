@@ -1,12 +1,19 @@
 package com.Feefee.JobBoard.companies;
 
 import java.util.List;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/companies")
+@Tag(name = "Companies", description = "Endpoints for managing companies")
+
 public class CompanyController {
   private CompanyService companyService;
 
@@ -15,6 +22,14 @@ public class CompanyController {
   }
 
   @GetMapping
+  @Operation(
+          summary = "Get all companies",
+          description = "Fetches all companies in the system"
+  )
+  @ApiResponses({
+          @ApiResponse(responseCode = "200", description = "Successfully retrieved companies"),
+          @ApiResponse(responseCode = "404", description = "No company found")
+  })
   public ResponseEntity<List<Company>> getAllCompanies() {
     return new ResponseEntity<>(companyService.getAllCompanies(), HttpStatus.OK);
   }
